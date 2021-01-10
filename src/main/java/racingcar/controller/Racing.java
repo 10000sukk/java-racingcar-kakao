@@ -2,6 +2,7 @@ package racingcar.controller;
 
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
+import racingcar.domain.RandomValueMovingStrategy;
 import racingcar.domain.TryNumber;
 import racingcar.utils.RandomNumberForRacing;
 
@@ -19,10 +20,11 @@ public class Racing {
                 .map(s -> s.trim())
                 .collect(Collectors.toList()));
         this.tryNumber = new TryNumber(tryNumber);
+        cars.setMovableStrategy(new RandomValueMovingStrategy());
     }
 
     public void oneRoundRacing() {
-        cars.moveAll(RandomNumberForRacing.getRandomNumberListForRacing(cars.getNumberOfCars()));
+        cars.moveAll();
         tryNumber.useTryNumber();
     }
 

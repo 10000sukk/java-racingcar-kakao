@@ -36,11 +36,12 @@ public class CarsTest {
         List<Car> carList = new ArrayList<>(Arrays.asList(
                 new Car("name1", 0), new Car("name2", 3), new Car("name3", 3)));
         Cars cars = new Cars(carList);
-        cars.moveAll(Arrays.asList(4, 4, 0));
+        cars.setMovableStrategy(() -> true);
+        cars.moveAll();
         Map<String, Integer> info = new HashMap<>();
         info.put("name1", 1);
         info.put("name2", 4);
-        info.put("name3", 3);
+        info.put("name3", 4);
         assertThat(cars.getCarsInfo()).isEqualTo(info);
 
     }

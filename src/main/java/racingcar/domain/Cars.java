@@ -4,23 +4,24 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Cars {
 
     private final List<Car> carsList;
+    private MovableStrategy movableStrategy;
 
     public Cars(List<Car> cars) {
         this.carsList = cars;
     }
 
-    public void moveAll(List<Integer> randomNumberList) {
-        if (carsList.size() != randomNumberList.size()) {
-            throw new IllegalArgumentException("차량을 움직이는 도중 잘못된 랜덤 리스트가 입력되었습니다.");
+    public void moveAll() {
+        for(Car car: carsList){
+            car.move(movableStrategy);
         }
-        IntStream.range(0, carsList.size())
-                .forEach(i ->
-                        carsList.get(i).move(randomNumberList.get(i)));
+    }
+
+    public void setMovableStrategy(MovableStrategy movableStrategy){
+        this.movableStrategy = movableStrategy;
     }
 
     public Map<String, Integer> getCarsInfo() {

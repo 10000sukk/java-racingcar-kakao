@@ -7,7 +7,7 @@ public class CarTest {
     @Test
     public void moveTest(){
         Car car = new Car("name1");
-        car.move(4);
+        car.move(() -> true);
         assertThat(car.getPosition()).isEqualTo(1);
     }
 }

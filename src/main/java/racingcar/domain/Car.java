@@ -5,7 +5,7 @@ public class Car {
     private final CarPosition position;
     private final CarName name;
 
-    private static final int THRESHOLD_FORWARD_VALUE = 4;
+    protected static final int THRESHOLD_FORWARD_VALUE = 4;
 
     public Car(String name) {
         this(name, 0);
@@ -24,8 +24,8 @@ public class Car {
         return this.position.getPosition();
     }
 
-    public void move(int value) {
-        if (isMovableValue(value)) {
+    public void move(MovableStrategy movableStrategy) {
+        if (movableStrategy.isMovable()) {
             this.position.forward();
         }
     }
